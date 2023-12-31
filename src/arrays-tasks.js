@@ -130,11 +130,15 @@ function getStringsLength(/* arr */) {
  *   getAverage([ -1, 1, -1, 1 ]) => 0
  *   getAverage[ 1, 10, 100, 1000 ]  => 277,75
  *   getAverage[ 2, 3, 3 ]  => 2,67
+ * (Number.isInteger(y / x)
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+function getAverage(arr) {
+  if (arr.length) {
+    const average = arr.reduce((acc, cur) => acc + cur, 0) / arr.length;
+    return Number.isInteger(average) ? +average : +average.toFixed(2);
+  }
+  return 0;
 }
-
 /**
  * Checks if all strings in an array have the same length.
  *
