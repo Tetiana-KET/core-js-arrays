@@ -20,12 +20,14 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(from, end) {
-  const result = [];
-  for (let i = from; i <= end; i += 1) {
-    result.push(i);
-  }
-  return result;
+function getIntervalArray(start, end) {
+  return Array(end - start + 1)
+    .fill(0)
+    .map((item, index) => item + start + index);
+  // for (let i = from; i <= end; i += 1) {
+  //   result.push(i);
+  // }
+  // return result;
 }
 
 /**
@@ -78,15 +80,13 @@ function findElement(arr, value) {
  *    findAllOccurrences([ true, 0, 1, 'true' ], true) => 1
  */
 function findAllOccurrences(arr, item) {
-  let result = 0;
-  arr.forEach((el) => {
-    if (el === item) {
-      result += 1;
+  return arr.reduce((acc, cur) => {
+    if (cur === item) {
+      return acc + 1;
     }
-  });
-  return result;
+    return acc;
+  }, 0);
 }
-findAllOccurrences([0, 0, 1, 1, 1, 2], 1);
 /**
  * Removes falsy values from the specified array.
  * Falsy values: false, null, 0, "", undefined, and NaN.
