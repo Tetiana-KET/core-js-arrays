@@ -358,8 +358,8 @@ function createChunks(arr, chunkSize) {
  *    generateOdds(2) => [ 1, 3 ]
  *    generateOdds(5) => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return new Array(len).fill(1).map((el, ind) => ind * 2 + 1);
 }
 
 /**
@@ -374,8 +374,8 @@ function generateOdds(/* len */) {
  *   getElementByIndices(['one','two','three'], [2]) => 'three'  (arr[2])
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
-function getElementByIndices(/* arr, indices */) {
-  throw new Error('Not implemented');
+function getElementByIndices(arr, indices) {
+  return indices.reduce((acc, cur) => acc[cur], arr);
 }
 
 /**
@@ -390,8 +390,8 @@ function getElementByIndices(/* arr, indices */) {
  *  getFalsyValuesCount([ -1, 'false', null, 0 ]) => 2
  *  getFalsyValuesCount([ null, undefined, NaN, false, 0, '' ]) => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.filter((el) => !el).length;
 }
 
 /**
@@ -411,9 +411,17 @@ function getFalsyValuesCount(/* arr */) {
  *     getIdentityMatrix(5) =>  [0,0,1,0,0],
  *                              [0,0,0,1,0],
  *                              [0,0,0,0,1]]
+ * 
+ * const arr = new Array(size).fill(0);
+  if (n === 0) return [];
+  return n === 1 ? arr : arr.map(() => createNDimensionalArray(n - 1, size));
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return new Array(n)
+    .fill(new Array(n).fill(0))
+    .map((subArr, subArrInd) =>
+      subArr.map((el, i) => (subArrInd === i ? 1 : 0))
+    );
 }
 
 /**
